@@ -1,0 +1,93 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+def rotate(head, k):
+    if head is None or head.next is None:
+        return head
+
+    # Find length and last node
+    current = head
+    length = 1
+
+    while current.next:
+        current = current.next
+        length += 1
+
+    # Connect last node to head
+    current.next = head
+
+    k = k % length
+
+    # Find new last node
+    for i in range(length - k):
+        current = current.next
+
+    # New head
+    head = current.next
+    current.next = None
+
+    return head
+
+
+def display(head):
+    while head:
+        print(head.data, end=" ")
+        head = head.next
+
+
+# Create linked list
+head = Node(10)
+head.next = Node(20)
+head.next.next = Node(30)
+head.next.next.next = Node(40)
+head.next.next.next.next = Node(50)
+
+k = 2
+
+head = rotate(head, k)
+
+print("Rotated Linked List:")
+display(head)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from collections import deque
+
+dq = deque()
+
+# Insert at rear
+dq.append(10)
+dq.append(20)
+dq.append(30)
+
+print("Deque:", dq)
+
+# Insert at front
+dq.appendleft(5)
+
+print("After inserting at front:", dq)
+
+# Delete from front
+dq.popleft()
+
+print("After deleting from front:", dq)
+
+# Delete from rear
+dq.pop()
+
+print("After deleting from rear:", dq)
