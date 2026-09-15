@@ -1,0 +1,21 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+    def count_nodes(self):
+        
+        left_count = self.left.count_nodes() if self.left else 0
+        right_count = self.right.count_nodes() if self.right else 0
+        return 1 + left_count + right_count
+
+
+root = Node(10)
+root.left = Node(20)
+root.right = Node(30)
+root.left.left = Node(40)
+root.left.right = Node(50)
+root.right.left = Node(60)
+
+print("Total number of nodes in the binary tree is:", root.count_nodes())
